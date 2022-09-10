@@ -52,6 +52,7 @@ SUPAB_USER='postgres'
 SUPAB_PASSWORD='your-supabase-pw'
 ```
 
+
 Restart your R session (Session -> Restart R Session or `.rs.restartR()`)
 
 Run `code/00-setup-supabase.R`
