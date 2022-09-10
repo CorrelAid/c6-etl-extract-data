@@ -3,32 +3,29 @@ import mariadb
 import sys
 import pandas as pd
 
-from datetime import date
 
 # list of table names
 table_names = ["lime_question_attributes", "lime_questions", "lime_survey_916481", "lime_survey_916481_timings"]
 
-# Connect to MariaDB Platform
+# connect to MariaDB Platform
 try:
     conn = mariadb.connect(
         user=os.environ["LIMESURVEY_SSH_USER"],
         password=os.environ["LIMESURVEY_SQL_PASSWORD"],
         host=os.environ["LIMESURVEY_SSH_IP"],
-        port=3306,
+        port=os.environ["LIMESURVEY_DATABASE_PORT"],
         database=["LIMESURVEY_DATABASE_NAME"]
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
     sys.exit(1)
 
-# Get Cursor to execute sql queries
+# get Cursor to execute sql queries
 cursor = conn.cursor()
 
-# get tables
+# get tables to csv
 for table in table_names:
-frame = cursor.execute("select * from " + table)
-frame.to_csv(f'{table}.csv')
-except database.Error as e:
-      print(f"Error retrieving entry from database: {e}")
+    dataFrame = cursor.execute("select * from " + table)
+    pd.to_csv(f"data/raw_data/{dataFrame}", index=False)
 
-dbConnection.close()
+conn.close()
