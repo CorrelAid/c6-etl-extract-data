@@ -3,7 +3,6 @@ import mariadb
 import sys
 import pandas as pd
 
-
 # list of table names
 table_names = ["lime_question_attributes", "lime_questions", "lime_survey_916481", "lime_survey_916481_timings"]
 
