@@ -1,17 +1,12 @@
 import pandas as pd
 import numpy as np
-import csv
 
-df1 = pd.read_csv('file1.csv')
-df2 = pd.read_csv('file2.csv')
-df3 = pd.read_csv('file3.csv')
-df4 = pd.read_csv('file4.csv')
 
-df_names_list = [df1, df2, df3, df4]
+filename_list = ['lime_question_attributes.csv', 'lime_questions.csv', 'lime_survey_916481.csv', 'lime_survey_916481_timings.csv']
 
-for x in df_names_list:
-    x.drop_duplicates(keep='first', inplace=True)
-    
-    with open('results.csv', 'w') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.close()
+clean_filenames_list = ['lime_question_attributes_clean.csv', 'lime_questions_clean.csv', 'lime_survey_916481_clean.csv', 'lime_survey_916481_timings_clean.csv']
+
+for rawfile,clean_filename in zip(filename_list, clean_filenames_list):
+    pd.read_csv(f"data/raw_data/{rawfile}")
+    df.drop_duplicates(keep='first', inplace=True)
+    df.to_csv(f"data/clean_data/{clean_filename}", index=False)
