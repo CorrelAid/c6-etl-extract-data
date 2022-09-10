@@ -2,7 +2,7 @@
 python get_raw_data.py
 
 # Save the raw data from limesurvey server to coolify server as a backup
-scp -r /data/raw_data coolify@116.203.20.255:/data/raw_data
+sshpass -f '$COOLIFY_PASSWORD' scp -r /data/raw_data coolify@116.203.20.255:/data/raw_data
 
 # Deduplicate the data
 python deduplicate_data.py
